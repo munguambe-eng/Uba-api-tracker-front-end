@@ -160,21 +160,38 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
     <div class="login-logo">UBA Data</div>
     <div class="login-sub">Project Tracker — Data Science Division</div>
     <div class="login-card" id="login-card">
-      <h3>Sign in</h3>
-      <div class="form-group">
-        <label>Work email</label>
-        <input type="email" id="login-email" placeholder="you@ubagroup.com" onkeydown="if(event.key==='Enter')sendMagicLink()">
+      <div style="display:flex;gap:0;margin-bottom:1.25rem;border:0.5px solid var(--border);border-radius:var(--r);overflow:hidden">
+        <button id="tab-signin" onclick="switchTab('signin')" style="flex:1;padding:8px;font-size:13px;font-family:'DM Sans',sans-serif;border:none;background:var(--ink);color:#fff;cursor:pointer">Sign in</button>
+        <button id="tab-register" onclick="switchTab('register')" style="flex:1;padding:8px;font-size:13px;font-family:'DM Sans',sans-serif;border:none;background:transparent;color:var(--ink2);cursor:pointer">Register</button>
       </div>
-      <button class="btn-primary" id="login-btn" onclick="sendMagicLink()">Send magic link</button>
+      <div id="panel-signin">
+        <div class="form-group">
+          <label>Work email</label>
+          <input type="email" id="login-email" placeholder="you@ubagroup.com" onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <button class="btn-primary" id="login-btn" onclick="doLogin()">Sign in</button>
+      </div>
+      <div id="panel-register" style="display:none">
+        <div class="form-group">
+          <label>Full name</label>
+          <input type="text" id="reg-name" placeholder="e.g. Ana Silva">
+        </div>
+        <div class="form-group">
+          <label>Work email</label>
+          <input type="email" id="reg-email" placeholder="you@ubagroup.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-password" placeholder="Min. 6 characters" onkeydown="if(event.key==='Enter')doRegister()">
+        </div>
+        <button class="btn-primary" id="reg-btn" onclick="doRegister()">Create account</button>
+      </div>
       <div class="error-msg" id="login-error"></div>
-    </div>
-    <div id="magic-sent" style="display:none">
-      <div class="success-msg">
-        Magic link sent to <strong id="sent-email"></strong>.<br>
-        Check your inbox and click the link to sign in.<br>
-        <span style="font-size:11px;color:var(--green-text);opacity:.8">You can close this tab after clicking the link.</span>
-      </div>
-      <button class="btn-primary" style="margin-top:1rem;background:transparent;color:var(--ink);border:0.5px solid var(--border2)" onclick="resetLogin()">Use a different email</button>
+      <div id="login-success" style="display:none"></div>
     </div>
   </div>
 </div>
@@ -225,8 +242,7 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 <div class="toast" id="toast"></div>
 
 <script>
-
-const API = 'https://uba-tracker-api-production-086c.up.railway.app';
+const API = 'https://uba-tracker-api-production.up.railway.app';
 
 const STATUS_LABELS = {'on-track':'On track','at-risk':'At risk','blocked':'Blocked','completed':'Completed','on-hold':'On hold'};
 const STATUS_CLASS  = {'on-track':'badge-on-track','at-risk':'badge-at-risk','blocked':'badge-blocked','completed':'badge-completed','on-hold':'badge-on-hold'};
@@ -265,50 +281,60 @@ function loadingHTML(msg='Loading...'){
 
 // ── AUTH ──────────────────────────────────────────
 
-async function sendMagicLink(){
-  const email = document.getElementById('login-email').value.trim();
-  const errEl = document.getElementById('login-error');
-  const btn   = document.getElementById('login-btn');
+function switchTab(tab){
+  const isSignin = tab==='signin';
+  document.getElementById('panel-signin').style.display   = isSignin?'block':'none';
+  document.getElementById('panel-register').style.display = isSignin?'none':'block';
+  document.getElementById('tab-signin').style.background   = isSignin?'var(--ink)':'transparent';
+  document.getElementById('tab-signin').style.color        = isSignin?'#fff':'var(--ink2)';
+  document.getElementById('tab-register').style.background = isSignin?'transparent':'var(--ink)';
+  document.getElementById('tab-register').style.color      = isSignin?'var(--ink2)':'#fff';
+  document.getElementById('login-error').textContent = '';
+  document.getElementById('login-success').style.display = 'none';
+}
+
+async function doLogin(){
+  const email    = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  const errEl    = document.getElementById('login-error');
+  const btn      = document.getElementById('login-btn');
   errEl.textContent = '';
-  if(!email){ errEl.textContent = 'Please enter your email.'; return; }
-  btn.disabled = true;
-  btn.innerHTML = '<div class="spinner"></div> Sending...';
+  if(!email||!password){ errEl.textContent='Email and password are required.'; return; }
+  btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Signing in...';
   try {
-    await api('POST', '/auth/magic-link', { email });
-    document.getElementById('login-card').style.display = 'none';
-    document.getElementById('magic-sent').style.display = 'block';
-    document.getElementById('sent-email').textContent = email;
-  } catch(e) {
-    errEl.textContent = e.message;
-    btn.disabled = false;
-    btn.innerHTML = 'Send magic link';
-  }
-}
-
-function resetLogin(){
-  document.getElementById('login-card').style.display = 'block';
-  document.getElementById('magic-sent').style.display = 'none';
-  document.getElementById('login-email').value = '';
-  const btn = document.getElementById('login-btn');
-  btn.disabled = false;
-  btn.innerHTML = 'Send magic link';
-}
-
-async function handleMagicLinkCallback(){
-  const params = new URLSearchParams(window.location.hash.replace('#','?') + '&' + window.location.search.replace('?',''));
-  const token_hash = params.get('token_hash') || params.get('access_token');
-  const type       = params.get('type') || 'email';
-  if(!token_hash) return false;
-  try {
-    const data = await api('POST', '/auth/verify', { token_hash, type });
+    const data = await api('POST', '/auth/login', { email, password });
     setToken(data.access_token);
     currentUser = data.user;
     localStorage.setItem('uba_user', JSON.stringify(data.user));
-    window.history.replaceState({}, '', window.location.pathname);
-    return true;
+    initApp();
   } catch(e){
-    return false;
+    errEl.textContent = e.message;
+    btn.disabled=false; btn.innerHTML='Sign in';
   }
+}
+
+async function doRegister(){
+  const name     = document.getElementById('reg-name').value.trim();
+  const email    = document.getElementById('reg-email').value.trim();
+  const password = document.getElementById('reg-password').value;
+  const errEl    = document.getElementById('login-error');
+  const btn      = document.getElementById('reg-btn');
+  const succEl   = document.getElementById('login-success');
+  errEl.textContent=''; succEl.style.display='none';
+  if(!name||!email||!password){ errEl.textContent='All fields are required.'; return; }
+  btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Creating account...';
+  try {
+    await api('POST', '/auth/register', { name, email, password });
+    succEl.innerHTML=`<div class="success-msg">Account created! You can now sign in.</div>`;
+    succEl.style.display='block';
+    document.getElementById('reg-name').value='';
+    document.getElementById('reg-email').value='';
+    document.getElementById('reg-password').value='';
+    setTimeout(()=>switchTab('signin'),1500);
+  } catch(e){
+    errEl.textContent=e.message;
+  }
+  btn.disabled=false; btn.innerHTML='Create account';
 }
 
 async function checkExistingSession(){
@@ -340,13 +366,11 @@ function doLogout(){
   currentUser = null;
   document.getElementById('app').style.display          = 'none';
   document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('login-card').style.display   = 'block';
-  document.getElementById('magic-sent').style.display   = 'none';
-  document.getElementById('login-email').value = '';
+  document.getElementById('login-email').value    = '';
+  document.getElementById('login-password').value = '';
   document.getElementById('login-error').textContent = '';
   const btn = document.getElementById('login-btn');
-  btn.disabled = false;
-  btn.innerHTML = 'Send magic link';
+  btn.disabled=false; btn.innerHTML='Sign in';
 }
 
 // ── VIEWS ─────────────────────────────────────────
@@ -686,8 +710,6 @@ document.getElementById('modal-overlay').addEventListener('click',function(e){if
 
 // ── BOOT ─────────────────────────────────────────
 (async function boot(){
-  const fromMagicLink = await handleMagicLinkCallback();
-  if(fromMagicLink){ initApp(); return; }
   const hasSession = await checkExistingSession();
   if(hasSession){ initApp(); return; }
 })();
