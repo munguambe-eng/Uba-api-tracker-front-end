@@ -314,6 +314,7 @@ async function doLogin(){
 }
 
 async function doRegister(){
+  event.preventDefault(); 
   const name     = document.getElementById('reg-name').value.trim();
   const email    = document.getElementById('reg-email').value.trim();
   const password = document.getElementById('reg-password').value;
