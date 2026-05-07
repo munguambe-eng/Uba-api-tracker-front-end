@@ -188,7 +188,8 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
     <label>Password</label>
     <input type="password" id="reg-password" placeholder="Min. 6 characters" autocomplete="new-password">
   </div>
-  <button class="btn-primary" id="reg-btn" onclick="doRegister()">Create account</button>
+  <button class="btn-primary" id="reg-btn" onclick="doRegister(event)">Create account</button>
+  
 </div>
       <div class="error-msg" id="login-error"></div>
       <div id="login-success" style="display:none"></div>
@@ -313,7 +314,7 @@ async function doLogin(){
   }
 }
 
-async function doRegister(){
+async function doRegister(event){
   event.preventDefault(); 
   const name     = document.getElementById('reg-name').value.trim();
   const email    = document.getElementById('reg-email').value.trim();
@@ -321,6 +322,7 @@ async function doRegister(){
   const errEl    = document.getElementById('login-error');
   const btn      = document.getElementById('reg-btn');
   const succEl   = document.getElementById('login-success');
+  console.log({name,email, password});
   errEl.textContent=''; succEl.style.display='none';
   if(!name||!email||!password){ errEl.textContent='All fields are required.'; return; }
   btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Creating account...';
