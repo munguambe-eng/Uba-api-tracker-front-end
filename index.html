@@ -63,17 +63,14 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .stat-label{font-size:11px;color:var(--ink3);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
 .stat-value{font-size:26px;font-family:'DM Serif Display',serif;color:var(--ink)}
 .projects-grid{display:flex;flex-direction:column;gap:10px}
-
-/* PROJECT CARD STATUS COLORS */
 .project-card{background:var(--surface);border-left:4px solid var(--border2);border-top:0.5px solid var(--border);border-right:0.5px solid var(--border);border-bottom:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;cursor:pointer;transition:all .15s}
-.project-card:hover{border-color:var(--border2);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.project-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .project-card.status-on-track{border-left-color:#1D9E75}
 .project-card.status-at-risk{border-left-color:#BA7517}
 .project-card.status-blocked{border-left-color:#A32D2D}
 .project-card.status-completed{border-left-color:#185FA5}
 .project-card.status-on-hold{border-left-color:#8a8a8a}
 .project-card.status-overdue{border-left-color:#A32D2D;background:#fffbfb}
-
 .project-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
 .project-card-name{font-size:15px;font-weight:500;color:var(--ink)}
 .project-card-owner{font-size:12px;color:var(--ink3);margin-top:2px}
@@ -97,9 +94,6 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .icon-btn:hover{background:var(--surface2);color:var(--ink)}
 .members-row{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
 .member-chip{font-size:11px;background:var(--surface2);border:0.5px solid var(--border);border-radius:20px;padding:2px 8px;color:var(--ink2)}
-.country-flag{font-size:11px;color:var(--ink3);margin-top:3px}
-
-/* MODAL */
 .modal-overlay{display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;background:rgba(15,15,15,.45);min-height:100vh;position:fixed;top:0;left:0;width:100%;z-index:1000;overflow-y:auto}
 .modal-overlay.open{display:flex !important}
 .modal{background:var(--surface);border-radius:var(--rl);border:0.5px solid var(--border);width:100%;max-width:700px;padding:1.75rem;margin:auto}
@@ -107,9 +101,6 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .modal-title{font-size:20px;color:var(--ink)}
 .modal-close{background:transparent;border:none;font-size:20px;cursor:pointer;color:var(--ink3);line-height:1;padding:4px}
 .modal-close:hover{color:var(--ink)}
-.modal-tabs{display:flex;gap:0;margin-bottom:1.5rem;border:0.5px solid var(--border);border-radius:var(--r);overflow:hidden}
-.modal-tab{flex:1;padding:8px;font-size:13px;font-family:'DM Sans',sans-serif;border:none;background:transparent;color:var(--ink2);cursor:pointer}
-.modal-tab.active{background:var(--ink);color:#fff}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:.75rem}
 .form-row.full{grid-template-columns:1fr}
 .form-row.three{grid-template-columns:1fr 1fr 1fr}
@@ -126,8 +117,6 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .b-remove:hover{color:var(--red)}
 .btn-ghost{background:transparent;border:0.5px dashed var(--border2);border-radius:var(--r);padding:6px 12px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--ink3);width:100%}
 .btn-ghost:hover{background:var(--surface2)}
-
-/* DETAIL */
 .detail-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:1.5rem}
 .back-btn{background:transparent;border:0.5px solid var(--border);border-radius:var(--r);padding:7px 12px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--ink2);white-space:nowrap}
 .back-btn:hover{background:var(--surface2)}
@@ -140,18 +129,13 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .update-date{font-size:11px;color:var(--ink3);margin-bottom:4px}
 .update-comment{font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:6px}
 .update-tags{display:flex;gap:6px;flex-wrap:wrap}
-
-/* TASKS */
 .task-list{display:flex;flex-direction:column;gap:6px}
-.task-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);transition:border-color .15s}
-.task-item:hover{border-color:var(--border2)}
+.task-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r)}
 .task-item.overdue{border-left:3px solid var(--red)}
-.task-item.blocked-dep{opacity:.7;background:var(--surface2)}
-.task-check{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.task-check{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
 .task-check.done{background:var(--green);border-color:var(--green)}
-.task-check.done::after{content:'✓';color:#fff;font-size:10px}
-.task-check.in-progress{background:var(--amber-bg);border-color:var(--amber)}
-.task-check.blocked{background:var(--red-bg);border-color:var(--red)}
+.task-check.in-progress{background:var(--amber);border-color:var(--amber)}
+.task-check.blocked{background:var(--red);border-color:var(--red)}
 .task-content{flex:1;min-width:0}
 .task-name{font-size:13px;font-weight:500;color:var(--ink)}
 .task-meta{display:flex;gap:8px;margin-top:3px;flex-wrap:wrap;align-items:center}
@@ -161,8 +145,6 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .task-actions{display:flex;gap:4px;flex-shrink:0}
 .task-btn{background:transparent;border:0.5px solid var(--border);border-radius:6px;padding:3px 7px;cursor:pointer;font-size:11px;color:var(--ink3);font-family:'DM Sans',sans-serif}
 .task-btn:hover{background:var(--surface2)}
-
-/* FILES */
 .file-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
 .file-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--surface2);border-radius:var(--r);border:0.5px solid var(--border)}
 .file-icon{font-size:18px;flex-shrink:0}
@@ -171,10 +153,8 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .file-link:hover{text-decoration:underline}
 .file-remove{background:transparent;border:none;cursor:pointer;color:var(--ink3);font-size:14px;padding:2px}
 .file-remove:hover{color:var(--red)}
-.upload-zone{border:1.5px dashed var(--border2);border-radius:var(--r);padding:1rem;text-align:center;font-size:13px;color:var(--ink3);cursor:pointer;transition:background .15s}
+.upload-zone{border:1.5px dashed var(--border2);border-radius:var(--r);padding:1rem;text-align:center;font-size:13px;color:var(--ink3);cursor:pointer;transition:background .15s;display:block}
 .upload-zone:hover{background:var(--surface2)}
-
-/* MEMBERS */
 .member-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
 .member-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--surface2);border-radius:var(--r);border:0.5px solid var(--border)}
 .member-avatar{width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
@@ -183,9 +163,6 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .member-email{font-size:11px;color:var(--ink3)}
 .member-remove{background:transparent;border:none;cursor:pointer;color:var(--ink3);font-size:14px;padding:2px}
 .member-remove:hover{color:var(--red)}
-.user-picker{width:100%;border:0.5px solid var(--border2);border-radius:var(--r);padding:8px 10px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);outline:none}
-
-/* REPORT */
 .report-controls{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;margin-bottom:1.5rem;display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
 .btn-export{background:var(--ink);color:#fff;border:none;border-radius:var(--r);padding:9px 16px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer}
 .btn-export:hover{opacity:.85}
@@ -291,15 +268,13 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 <div class="toast" id="toast"></div>
 
 <script>
-const API = 'https://uba-tracker-api-production-ebef.up.railway.app';
-const COUNTRIES = ['Angola','Botswana','Cameroon','Congo','Côte d\'Ivoire','DRC','Ethiopia','Ghana','Guinea','Kenya','Liberia','Mozambique','Nigeria','Rwanda','Senegal','Sierra Leone','South Africa','Tanzania','Uganda','Zambia','Zimbabwe','Other'];
-const STATUS_LABELS = {'on-track':'On track','at-risk':'At risk','blocked':'Blocked','completed':'Completed','on-hold':'On hold','overdue':'Overdue'};
-const STATUS_CLASS  = {'on-track':'badge-on-track','at-risk':'badge-at-risk','blocked':'badge-blocked','completed':'badge-completed','on-hold':'badge-on-hold','overdue':'badge-overdue'};
-const FILL_CLASS    = {'on-track':'','at-risk':'risk','blocked':'danger','completed':'done','on-hold':'','overdue':'danger'};
-const TASK_STATUS   = {'pending':'pending','in-progress':'in-progress','completed':'done','blocked':'blocked'};
+const API='https://uba-tracker-api-production-ebef.up.railway.app';
+const COUNTRIES=['Angola','Botswana','Cameroon','Congo','Côte d\'Ivoire','DRC','Ethiopia','Ghana','Guinea','Kenya','Liberia','Mozambique','Nigeria','Rwanda','Senegal','Sierra Leone','South Africa','Tanzania','Uganda','Zambia','Zimbabwe','Other'];
+const STATUS_LABELS={'on-track':'On track','at-risk':'At risk','blocked':'Blocked','completed':'Completed','on-hold':'On hold','overdue':'Overdue'};
+const STATUS_CLASS={'on-track':'badge-on-track','at-risk':'badge-at-risk','blocked':'badge-blocked','completed':'badge-completed','on-hold':'badge-on-hold','overdue':'badge-overdue'};
+const FILL_CLASS={'on-track':'','at-risk':'risk','blocked':'danger','completed':'done','on-hold':'','overdue':'danger'};
 
-let currentUser=null,currentView='dashboard',editingId=null,authToken=null;
-let allUsers=[];
+let currentUser=null,currentView='dashboard',editingId=null,authToken=null,allUsers=[];
 
 function getToken(){return authToken||localStorage.getItem('uba_token')}
 function setToken(t){authToken=t;localStorage.setItem('uba_token',t)}
@@ -334,12 +309,17 @@ function loadingHTML(msg='Loading...'){
 }
 
 function isOverdue(p){
-  if(!p.due_date||p.status==='completed') return false;
-  return new Date(p.due_date)<new Date();
+  if(!p.deadline||p.status==='completed') return false;
+  return new Date(p.deadline)<new Date();
 }
 
 function getProjectStatus(p){
   return isOverdue(p)?'overdue':p.status;
+}
+
+function fmtDate(d){
+  if(!d) return '—';
+  return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 }
 
 function fileIcon(type){
@@ -418,7 +398,6 @@ function initApp(){
   document.getElementById('sidebar-role').textContent=(u.role||'').replace(/_/g,' ');
   document.getElementById('login-screen').style.display='none';
   document.getElementById('app').style.display='block';
-  // Load all users for member picker
   api('GET','/members/users/all').then(d=>{allUsers=d.users||[];}).catch(()=>{});
   showView('dashboard');
 }
@@ -451,8 +430,8 @@ async function loadDashboard(mc){
   try{
     const{projects}=await api('GET','/projects');
     const total=projects.length;
-    const onTrack=projects.filter(p=>p.status==='on-track').length;
-    const atRisk=projects.filter(p=>p.status==='at-risk'||p.status==='blocked').length;
+    const onTrack=projects.filter(p=>p.status==='on-track'&&!isOverdue(p)).length;
+    const atRisk=projects.filter(p=>(p.status==='at-risk'||p.status==='blocked')&&!isOverdue(p)).length;
     const overdue=projects.filter(p=>isOverdue(p)).length;
     const avgProg=total?Math.round(projects.reduce((a,p)=>a+p.progress,0)/total):0;
     mc.innerHTML=`
@@ -501,8 +480,8 @@ function projectCard(p){
     </div>
     <div class="project-card-meta">
       <div class="meta-item"><strong>${p.progress}%</strong>Progress</div>
-      <div class="meta-item"><strong>${p.timeline||'—'}</strong>Deadline</div>
-      <div class="meta-item"><strong>${p.due_date?new Date(p.due_date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—'}</strong>Due date</div>
+      <div class="meta-item"><strong>${p.deadline?fmtDate(p.deadline):'—'}</strong>Deadline</div>
+      <div class="meta-item"><strong>${p.country||'—'}</strong>Country</div>
       <div class="meta-item"><strong>${(p.files||[]).length||'—'}</strong>Files</div>
     </div>
     <div class="progress-bar-wrap"><div class="progress-fill ${fc}" style="width:${p.progress}%"></div></div>
@@ -519,20 +498,19 @@ async function openDetail(id){
     const updates=(p.updates||[]).slice().reverse();
     const status=getProjectStatus(p);
     let tasksHTML='';
-    try{
-      const{tasks}=await api('GET','/tasks/'+id);
-      tasksHTML=renderTaskList(tasks,id);
-    }catch(e){tasksHTML='<div style="color:var(--ink3);font-size:13px">Could not load tasks.</div>';}
+    try{const{tasks}=await api('GET','/tasks/'+id);tasksHTML=renderTaskList(tasks,id);}
+    catch(e){tasksHTML='<div style="color:var(--ink3);font-size:13px">Could not load tasks.</div>';}
     let membersHTML='';
-    try{
-      const{members}=await api('GET','/members/'+id);
-      membersHTML=renderMemberList(members,id);
-    }catch(e){membersHTML='';}
+    try{const{members}=await api('GET','/members/'+id);membersHTML=renderMemberList(members,id);}
+    catch(e){membersHTML='';}
     const files=p.files||[];
     mc.innerHTML=`
       <div class="detail-header">
         <button class="back-btn" onclick="showView('${currentView}')">← Back</button>
-        <div style="flex:1"><h1 class="page-title">${p.name}</h1><div class="page-sub">${p.owner_name}${p.country?' · '+p.country:''} · <span class="badge badge-${status}">${STATUS_LABELS[status]||status}</span></div></div>
+        <div style="flex:1">
+          <h1 class="page-title">${p.name}</h1>
+          <div class="page-sub">${p.owner_name}${p.country?' · '+p.country:''} · <span class="badge badge-${status}">${STATUS_LABELS[status]||status}</span></div>
+        </div>
         <button class="btn-add" onclick="openUpdateModal('${p.id}')">+ Post update</button>
       </div>
       <div class="detail-card">
@@ -541,11 +519,11 @@ async function openDetail(id){
           <div class="detail-item"><label>Status</label><span><span class="badge badge-${status}">${STATUS_LABELS[status]||status}</span></span></div>
           <div class="detail-item"><label>Progress</label><span>${p.progress}%</span></div>
           <div class="detail-item"><label>Owner</label><span>${p.owner_name}</span></div>
-          <div class="detail-item"><label>Deadline</label><span>${p.timeline||'—'}</span></div>
-          <div class="detail-item"><label>Due date</label><span>${p.due_date?new Date(p.due_date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—'}</span></div>
+          <div class="detail-item"><label>Deadline</label><span>${p.deadline?fmtDate(p.deadline):'—'}</span></div>
           <div class="detail-item"><label>Country</label><span>${p.country||'—'}</span></div>
+          <div class="detail-item"><label>Documentation</label><span>${p.documentation||'—'}</span></div>
         </div>
-        ${p.description?`<div style="font-size:13px;color:var(--ink2);line-height:1.6;margin-top:4px">${p.description}</div>`:''}
+        ${p.description?`<div style="font-size:13px;color:var(--ink2);line-height:1.6;margin-top:4px;padding-top:8px;border-top:0.5px solid var(--border)">${p.description}</div>`:''}
         <div class="progress-bar-wrap" style="height:5px;margin-top:12px"><div class="progress-fill ${FILL_CLASS[status]||''}" style="width:${p.progress}%"></div></div>
       </div>
       ${p.bottlenecks&&p.bottlenecks.filter(b=>b).length?`
@@ -567,26 +545,18 @@ async function openDetail(id){
         </div>
         ${membersHTML}
       </div>
-      ${files.length?`
       <div class="detail-card">
         <div class="detail-section-title">Files & attachments</div>
-        <div class="file-list">
-          ${files.map(f=>`
-            <div class="file-item">
-              <span class="file-icon">${fileIcon(f.type)}</span>
-              <span class="file-name">${f.name}</span>
-              <a class="file-link" href="${f.url}" target="_blank">View</a>
-              <button class="file-remove" onclick="removeFile('${id}','${f.url}')">×</button>
-            </div>`).join('')}
-        </div>
-        <label class="upload-zone" for="file-upload-detail">Click to upload file</label>
-        <input type="file" id="file-upload-detail" style="display:none" onchange="uploadFile('${id}',this)">
-      </div>`:`
-      <div class="detail-card">
-        <div class="detail-section-title">Files & attachments</div>
+        ${files.length?`<div class="file-list">${files.map(f=>`
+          <div class="file-item">
+            <span class="file-icon">${fileIcon(f.type)}</span>
+            <span class="file-name">${f.name}</span>
+            <a class="file-link" href="${f.url}" target="_blank">View</a>
+            <button class="file-remove" onclick="removeFile('${id}','${f.url}')">×</button>
+          </div>`).join('')}</div>`:''}
         <label class="upload-zone" for="file-upload-detail">Click to upload file (image, PDF, document)</label>
         <input type="file" id="file-upload-detail" style="display:none" onchange="uploadFile('${id}',this)">
-      </div>`}
+      </div>
       <div class="detail-card">
         <div class="detail-section-title">Update history</div>
         ${updates.length?updates.map(u=>`
@@ -607,14 +577,15 @@ function renderTaskList(tasks,projectId){
   if(!tasks||!tasks.length) return '<div style="color:var(--ink3);font-size:13px;padding:.5rem 0">No tasks yet. Add your first task.</div>';
   return `<div class="task-list">${tasks.map(t=>{
     const deps=t.task_dependencies||[];
-    const isOverdueTask=t.due_date&&t.status!=='completed'&&new Date(t.due_date)<new Date();
-    const statusClass=t.status==='completed'?'done':t.status==='in-progress'?'in-progress':t.status==='blocked'?'blocked':'';
-    return `<div class="task-item${isOverdueTask?' overdue':''}">
-      <div class="task-check ${statusClass}" onclick="cycleTaskStatus('${t.id}','${t.status}','${projectId}')"></div>
+    const overdueTask=t.due_date&&t.status!=='completed'&&new Date(t.due_date)<new Date();
+    const checkClass=t.status==='completed'?'done':t.status==='in-progress'?'in-progress':t.status==='blocked'?'blocked':'';
+    const checkMark=t.status==='completed'?'✓':t.status==='in-progress'?'●':t.status==='blocked'?'✕':'';
+    return `<div class="task-item${overdueTask?' overdue':''}">
+      <div class="task-check ${checkClass}" onclick="cycleTaskStatus('${t.id}','${t.status}','${projectId}')">${checkMark}</div>
       <div class="task-content">
         <div class="task-name" style="${t.status==='completed'?'text-decoration:line-through;opacity:.6':''}">${t.name}</div>
         <div class="task-meta">
-          ${t.due_date?`<span class="task-due${isOverdueTask?' overdue':''}">Due: ${new Date(t.due_date).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</span>`:''}
+          ${t.due_date?`<span class="task-due${overdueTask?' overdue':''}">Due: ${fmtDate(t.due_date)}</span>`:''}
           ${deps.length?`<span class="task-dep">Depends on ${deps.length} task${deps.length>1?'s':''}</span>`:''}
           ${t.assignee?`<span style="font-size:11px;color:var(--ink3)">${t.assignee.name||t.assignee.email}</span>`:''}
         </div>
@@ -670,7 +641,7 @@ async function openUpdateModal(id){
 
 function openAddTaskModal(projectId){
   document.getElementById('modal-title').textContent='Add task';
-  document.getElementById('modal-body').innerHTML=taskForm(null,projectId);
+  document.getElementById('modal-body').innerHTML=taskForm(null,projectId,[]);
   document.getElementById('modal-overlay').classList.add('open');
 }
 
@@ -696,19 +667,20 @@ function closeModal(){document.getElementById('modal-overlay').classList.remove(
 function projectForm(p){
   const blist=(p&&p.bottlenecks&&p.bottlenecks.length?p.bottlenecks:['']);
   return `
-    <div class="form-row"><div class="fg"><label>Project name</label><input id="f-name" value="${p?p.name:''}" placeholder="e.g. Credit scoring model v2"></div>
-    <div class="fg"><label>Owner</label><input id="f-owner" value="${p?p.owner_name:(currentUser.name||currentUser.email)}" placeholder="Full name"></div></div>
+    <div class="form-row">
+      <div class="fg"><label>Project name</label><input id="f-name" value="${p?p.name:''}" placeholder="e.g. Credit scoring model v2"></div>
+      <div class="fg"><label>Owner</label><input id="f-owner" value="${p?p.owner_name:(currentUser.name||currentUser.email)}" placeholder="Full name"></div>
+    </div>
     <div class="form-row full"><div class="fg"><label>Description</label><textarea id="f-description" rows="2" placeholder="Brief description of the project goals...">${p&&p.description?p.description:''}</textarea></div></div>
     <div class="form-row three">
       <div class="fg"><label>Status</label><select id="f-status">${Object.entries(STATUS_LABELS).filter(([k])=>k!=='overdue').map(([k,v])=>`<option value="${k}"${p&&p.status===k?' selected':''}>${v}</option>`).join('')}</select></div>
       <div class="fg"><label>Progress (%)</label><input id="f-progress" type="number" min="0" max="100" value="${p?p.progress:0}"></div>
-      <div class="fg"><label>Country</label><select id="f-country"><option value="">— Select country —</option>${COUNTRIES.map(c=>`<option value="${c}"${p&&p.country===c?' selected':''}>${c}</option>`).join('')}</select></div>
+      <div class="fg"><label>Country</label><select id="f-country"><option value="">— Select —</option>${COUNTRIES.map(c=>`<option value="${c}"${p&&p.country===c?' selected':''}>${c}</option>`).join('')}</select></div>
     </div>
     <div class="form-row">
-      <div class="fg"><label>Expected delivery</label><input id="f-timeline" value="${p&&p.timeline?p.timeline:''}" placeholder="e.g. Jun 06, 2026"></div>
-      <div class="fg"><label>Due date</label><input id="f-due-date" type="date" value="${p&&p.due_date?p.due_date.split('T')[0]:''}"></div>
+      <div class="fg"><label>Expected delivery (deadline)</label><input id="f-deadline" type="date" value="${p&&p.deadline?p.deadline.split('T')[0]:''}"></div>
+      <div class="fg"><label>Documentation / links</label><input id="f-doc" value="${p&&p.documentation?p.documentation:''}" placeholder="GitHub, Confluence, Jira..."></div>
     </div>
-    <div class="form-row full"><div class="fg"><label>Documentation / links</label><input id="f-doc" value="${p&&p.documentation?p.documentation:''}" placeholder="GitHub, Confluence, Jira..."></div></div>
     <div class="form-row full"><div class="fg"><label>Bottlenecks & blockers</label>
       <div id="b-list">${blist.map((b,i)=>`<div class="b-row" id="brow-${i}"><input value="${b}" placeholder="Describe blocker..."><button class="b-remove" onclick="removeBottleneck(${i})" type="button">×</button></div>`).join('')}</div>
       <button class="btn-ghost" type="button" onclick="addBottleneck()">+ add bottleneck</button>
@@ -741,7 +713,7 @@ function taskForm(task,projectId,allTasks){
       ${allUsers.map(u=>`<option value="${u.id}"${task&&task.assignee_id===u.id?' selected':''}>${u.name||u.email}</option>`).join('')}
     </select></div></div>
     ${otherTasks.length?`
-    <div class="form-row full"><div class="fg"><label>Depends on (select tasks this task requires to be done first)</label>
+    <div class="form-row full"><div class="fg"><label>Depends on</label>
       <div style="display:flex;flex-direction:column;gap:4px;max-height:120px;overflow-y:auto;border:0.5px solid var(--border2);border-radius:var(--r);padding:6px">
         ${otherTasks.map(t=>`
           <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:3px 4px">
@@ -757,17 +729,16 @@ function taskForm(task,projectId,allTasks){
 }
 
 function memberForm(projectId){
-  const existingIds=[];
-  const available=allUsers.filter(u=>!existingIds.includes(u.id)&&u.id!==currentUser.id);
+  const available=allUsers.filter(u=>u.id!==currentUser.id);
   return `
     <div class="form-group"><label>Select team member</label>
-      <select id="m-user" class="user-picker">
+      <select id="m-user" style="width:100%;border:0.5px solid var(--border2);border-radius:var(--r);padding:8px 10px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);outline:none">
         <option value="">— Choose a registered user —</option>
         ${available.map(u=>`<option value="${u.id}">${u.name||u.email} (${u.email})</option>`).join('')}
       </select>
     </div>
     <div class="form-group"><label>Role</label>
-      <select id="m-role">
+      <select id="m-role" style="width:100%;border:0.5px solid var(--border2);border-radius:var(--r);padding:8px 10px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);outline:none">
         <option value="member">Member</option>
         <option value="viewer">Viewer</option>
         <option value="owner">Owner</option>
@@ -781,8 +752,10 @@ function memberForm(projectId){
 
 function updateForm(p){
   return `
-    <div class="form-row"><div class="fg"><label>Status</label><select id="f-status">${Object.entries(STATUS_LABELS).filter(([k])=>k!=='overdue').map(([k,v])=>`<option value="${k}"${p.status===k?' selected':''}>${v}</option>`).join('')}</select></div>
-    <div class="fg"><label>Progress (%)</label><input id="f-progress" type="number" min="0" max="100" value="${p.progress}"></div></div>
+    <div class="form-row">
+      <div class="fg"><label>Status</label><select id="f-status">${Object.entries(STATUS_LABELS).filter(([k])=>k!=='overdue').map(([k,v])=>`<option value="${k}"${p.status===k?' selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="fg"><label>Progress (%)</label><input id="f-progress" type="number" min="0" max="100" value="${p.progress}"></div>
+    </div>
     <div class="form-row full"><div class="fg"><label>Bottlenecks this week</label>
       <div id="b-list"><div class="b-row" id="brow-0"><input id="b-0" placeholder="Any blockers? Leave blank if none."><button class="b-remove" onclick="removeBottleneck(0)" type="button">×</button></div></div>
       <button class="btn-ghost" type="button" onclick="addBottleneck()">+ add bottleneck</button>
@@ -826,8 +799,7 @@ async function saveProject(){
     status:document.getElementById('f-status').value,
     progress:Math.min(100,Math.max(0,parseInt(document.getElementById('f-progress').value)||0)),
     country:document.getElementById('f-country').value,
-    timeline:document.getElementById('f-timeline').value.trim(),
-    due_date:document.getElementById('f-due-date').value||null,
+    deadline:document.getElementById('f-deadline').value||null,
     documentation:document.getElementById('f-doc').value.trim(),
     bottlenecks:getBotList(),
     comment:document.getElementById('f-comment').value.trim()
@@ -888,11 +860,8 @@ async function saveTask(projectId,taskId){
     let savedTask;
     if(taskId){savedTask=(await api('PUT','/tasks/'+taskId,body)).task;}
     else{savedTask=(await api('POST','/tasks',body)).task;}
-    // Handle dependencies
-    if(depCheckboxes.length){
-      for(const depId of depCheckboxes){
-        await api('POST','/tasks/dependency',{task_id:savedTask.id,depends_on_id:depId}).catch(()=>{});
-      }
+    for(const depId of depCheckboxes){
+      await api('POST','/tasks/dependency',{task_id:savedTask.id,depends_on_id:depId}).catch(()=>{});
     }
     showToast(taskId?'Task updated':'Task added');
     closeModal();openDetail(projectId);
@@ -901,9 +870,8 @@ async function saveTask(projectId,taskId){
 
 async function cycleTaskStatus(taskId,currentStatus,projectId){
   const cycle={'pending':'in-progress','in-progress':'completed','completed':'pending','blocked':'in-progress'};
-  const newStatus=cycle[currentStatus]||'in-progress';
   try{
-    await api('PUT','/tasks/'+taskId,{status:newStatus});
+    await api('PUT','/tasks/'+taskId,{status:cycle[currentStatus]||'in-progress'});
     openDetail(projectId);
   }catch(e){showToast(e.message);}
 }
@@ -1006,23 +974,26 @@ function renderReport(data){
       <div class="r-stat"><div class="r-stat-val">${summary.avg_progress}%</div><div class="r-stat-lbl">Avg progress</div></div>
     </div>
     <h2>Project status</h2>
-    ${projects.map(p=>`
-      <div class="r-project">
+    ${projects.map(p=>{
+      const over=isOverdue(p);
+      const st=over?'overdue':p.status;
+      return `<div class="r-project">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
           <div class="r-proj-name">${p.name}${p.country?` <span style="font-size:12px;font-weight:400;color:#8a8a8a">· ${p.country}</span>`:''}</div>
-          <span class="badge badge-${isOverdue(p)?'overdue':p.status}">${isOverdue(p)?'Overdue':STATUS_LABELS[p.status]||p.status}</span>
+          <span class="badge badge-${st}">${STATUS_LABELS[st]||st}</span>
         </div>
         <div class="r-proj-row">
           <div>Owner<span>${p.owner_name}</span></div>
-          <div>Deadline<span>${p.timeline||'—'}</span></div>
+          <div>Deadline<span>${p.deadline?fmtDate(p.deadline):'—'}</span></div>
           <div>Progress<span>${p.progress}%</span></div>
         </div>
-        <div class="r-prog"><div class="r-prog-fill" style="width:${p.progress}%;background:${isOverdue(p)?'#A32D2D':p.status==='at-risk'?'#BA7517':p.status==='blocked'?'#A32D2D':p.status==='completed'?'#185FA5':'#1D9E75'}"></div></div>
+        <div class="r-prog"><div class="r-prog-fill" style="width:${p.progress}%;background:${over?'#A32D2D':p.status==='at-risk'?'#BA7517':p.status==='blocked'?'#A32D2D':p.status==='completed'?'#185FA5':'#1D9E75'}"></div></div>
         ${p.description?`<div style="font-size:12px;color:#4a4a4a;margin-top:4px;line-height:1.5">${p.description}</div>`:''}
         ${p.documentation?`<div style="font-size:12px;color:#4a4a4a;margin-top:4px">Docs: ${p.documentation}</div>`:''}
         ${p.comment?`<div style="font-size:13px;color:#0f0f0f;margin-top:6px;line-height:1.6">${p.comment}</div>`:''}
         ${p.bottlenecks&&p.bottlenecks.filter(b=>b).length?`<div class="r-block">Blockers: ${p.bottlenecks.filter(b=>b).join(' · ')}</div>`:''}
-      </div>`).join('')}
+      </div>`;
+    }).join('')}
     ${blockers&&blockers.length?`
     <h2>Key blockers requiring attention</h2>
     <div style="background:#FAEEDA;border-radius:8px;padding:1rem;margin-bottom:1rem">
@@ -1052,8 +1023,7 @@ async function exportExcel(){
       await new Promise((res,rej)=>{
         const s=document.createElement('script');
         s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
-        s.onload=res;s.onerror=rej;
-        document.head.appendChild(s);
+        s.onload=res;s.onerror=rej;document.head.appendChild(s);
       });
     }
     const wb=XLSX.utils.book_new();
@@ -1070,16 +1040,16 @@ async function exportExcel(){
     wsSummary['!cols']=[{wch:25},{wch:15},{wch:20},{wch:15},{wch:15}];
     XLSX.utils.book_append_sheet(wb,wsSummary,'Summary');
     const wsProjects=XLSX.utils.aoa_to_sheet([
-      ['Project Name','Owner','Country','Status','Progress (%)','Deadline','Due Date','Description','Documentation','Bottlenecks','Comments'],
-      ...projects.map(p=>[
-        p.name,p.owner_name,p.country||'—',
-        isOverdue(p)?'Overdue':p.status.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()),
-        p.progress,p.timeline||'—',p.due_date?new Date(p.due_date).toLocaleDateString('en-GB'):'—',
-        p.description||'—',p.documentation||'—',
-        (p.bottlenecks||[]).filter(b=>b).join('; ')||'—',p.comment||'—'
-      ])
+      ['Project Name','Owner','Country','Status','Progress (%)','Deadline','Description','Documentation','Bottlenecks','Comments'],
+      ...projects.map(p=>{
+        const over=isOverdue(p);
+        const st=over?'Overdue':p.status.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+        return[p.name,p.owner_name,p.country||'—',st,p.progress,
+          p.deadline?fmtDate(p.deadline):'—',p.description||'—',p.documentation||'—',
+          (p.bottlenecks||[]).filter(b=>b).join('; ')||'—',p.comment||'—'];
+      })
     ]);
-    wsProjects['!cols']=[{wch:30},{wch:20},{wch:15},{wch:15},{wch:12},{wch:18},{wch:15},{wch:30},{wch:25},{wch:40},{wch:40}];
+    wsProjects['!cols']=[{wch:30},{wch:20},{wch:15},{wch:15},{wch:12},{wch:15},{wch:30},{wch:25},{wch:40},{wch:40}];
     XLSX.utils.book_append_sheet(wb,wsProjects,'Projects');
     const blockers=projects.filter(p=>p.bottlenecks&&p.bottlenecks.filter(b=>b).length>0);
     if(blockers.length){
