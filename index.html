@@ -85,8 +85,8 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 .project-card-comment{font-size:13px;color:var(--ink2);border-top:0.5px solid var(--border);padding-top:.75rem;margin-top:.75rem;line-height:1.6}
 .icon-btn{background:transparent;border:0.5px solid var(--border);border-radius:var(--r);padding:5px 8px;cursor:pointer;font-size:12px;color:var(--ink3);font-family:'DM Sans',sans-serif}
 .icon-btn:hover{background:var(--surface2);color:var(--ink)}
-.modal-overlay{display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;background:rgba(15,15,15,.45);min-height:100vh}
-.modal-overlay.open{display:flex}
+.modal-overlay{display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;background:rgba(15,15,15,.45);min-height:100vh;position:fixed;top:0;left:0;width:100%;z-index:1000}
+.modal-overlay.open{display:flex !important}
 .modal{background:var(--surface);border-radius:var(--rl);border:0.5px solid var(--border);width:100%;max-width:640px;padding:1.75rem}
 .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
 .modal-title{font-size:20px;color:var(--ink)}
@@ -167,29 +167,30 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
       <div id="panel-signin">
         <div class="form-group">
           <label>Work email</label>
-          <input type="text" id="login-email" placeholder="you@ubagroup.com" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+          <input type="text" id="login-email" placeholder="you@ubagroup.com" onkeydown="if(event.key==='Enter')doLogin()">
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+          <input type="password" id="login-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
         </div>
         <button class="btn-primary" id="login-btn" onclick="doLogin()">Sign in</button>
       </div>
       <div id="panel-register" style="display:none">
-        <div class="form-group">
-          <label>Full name</label>
-          <input type="text" id="reg-name" placeholder="e.g. Ana Silva" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label>Work email</label>
-          <input type="text" id="reg-email" placeholder="you@ubagroup.com" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="reg-password" placeholder="Min. 6 characters" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()">
-        </div>
-        <button class="btn-primary" id="reg-btn" onclick="doRegister()">Create account</button>
-      </div>
+  <div class="form-group">
+    <label>Full name</label>
+    <input type="text" id="reg-name" placeholder="e.g. Ana Silva" autocomplete="off">
+  </div>
+  <div class="form-group">
+    <label>Work email</label>
+    <input type="text" id="reg-email" placeholder="you@ubagroup.com" autocomplete="off">
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" id="reg-password" placeholder="Min. 6 characters" autocomplete="new-password">
+  </div>
+  <button class="btn-primary" id="reg-btn" onclick="doRegister(event)">Create account</button>
+  
+</div>
       <div class="error-msg" id="login-error"></div>
       <div id="login-success" style="display:none"></div>
     </div>
@@ -242,7 +243,7 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
 <div class="toast" id="toast"></div>
 
 <script>
-const API = 'https://uba-tracker-api-production.up.railway.app';
+const API = 'https://uba-tracker-api-production-ebef.up.railway.app';
 
 const STATUS_LABELS = {'on-track':'On track','at-risk':'At risk','blocked':'Blocked','completed':'Completed','on-hold':'On hold'};
 const STATUS_CLASS  = {'on-track':'badge-on-track','at-risk':'badge-at-risk','blocked':'badge-blocked','completed':'badge-completed','on-hold':'badge-on-hold'};
@@ -313,13 +314,15 @@ async function doLogin(){
   }
 }
 
-async function doRegister(){
+async function doRegister(event){
+  event.preventDefault(); 
   const name     = document.getElementById('reg-name').value.trim();
   const email    = document.getElementById('reg-email').value.trim();
   const password = document.getElementById('reg-password').value;
   const errEl    = document.getElementById('login-error');
   const btn      = document.getElementById('reg-btn');
   const succEl   = document.getElementById('login-success');
+  console.log({name,email, password});
   errEl.textContent=''; succEl.style.display='none';
   if(!name||!email||!password){ errEl.textContent='All fields are required.'; return; }
   btn.disabled=true; btn.innerHTML='<div class="spinner"></div> Creating account...';
@@ -641,7 +644,6 @@ function renderReportView(){
       <div class="fg"><label style="display:block;font-size:12px;font-weight:500;color:var(--ink2);margin-bottom:5px">Filter status</label><select id="r-filter" style="width:140px"><option value="all">All projects</option><option value="on-track">On track</option><option value="at-risk">At risk</option><option value="blocked">Blocked</option><option value="completed">Completed</option></select></div>
       <button class="btn-export" onclick="loadAndRenderReport()">Preview report</button>
       <button class="btn-export" style="background:var(--green)" onclick="printReport()">Export / print</button>
-      <button class="btn-export" style="background:#185FA5" onclick="exportExcel()">Export Excel</button>
     </div>
     <div class="report-preview" id="report-preview"><div style="color:var(--ink3);font-size:14px">Click "Preview report" to generate.</div></div>`;
 }
@@ -705,81 +707,6 @@ function renderReport(data){
 async function printReport(){
   await loadAndRenderReport();
   setTimeout(()=>window.print(), 500);
-}
-
-async function exportExcel(){
-  showToast('Preparing Excel file...');
-  const filter = document.getElementById('r-filter') ? document.getElementById('r-filter').value : 'all';
-  const period = document.getElementById('r-period') ? document.getElementById('r-period').value : '';
-  const author = document.getElementById('r-author') ? document.getElementById('r-author').value : currentUser.name;
-
-  try {
-    const data = await api('GET', `/reports/generate?status_filter=${filter}&period=${encodeURIComponent(period)}`);
-    const { summary, projects } = data;
-
-    // Load SheetJS dynamically
-    if(!window.XLSX){
-      await new Promise((res, rej) => {
-        const s = document.createElement('script');
-        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
-        s.onload = res; s.onerror = rej;
-        document.head.appendChild(s);
-      });
-    }
-
-    const wb = XLSX.utils.book_new();
-
-    // ── Sheet 1: Summary ──
-    const summaryData = [
-      ['UBA Group — Data Science Division'],
-      ['Weekly Project Status Report'],
-      ['Period:', period],
-      ['Prepared by:', author],
-      ['Generated:', new Date().toLocaleDateString('en-GB')],
-      [],
-      ['PORTFOLIO SUMMARY'],
-      ['Total Projects', 'On Track', 'At Risk / Blocked', 'Completed', 'Avg Progress'],
-      [summary.total, summary.on_track, summary.at_risk, summary.completed, summary.avg_progress + '%'],
-    ];
-    const wsSummary = XLSX.utils.aoa_to_sheet(summaryData);
-    wsSummary['!cols'] = [{wch:25},{wch:15},{wch:20},{wch:15},{wch:15}];
-    XLSX.utils.book_append_sheet(wb, wsSummary, 'Summary');
-
-    // ── Sheet 2: Projects ──
-    const projectHeaders = ['Project Name','Owner','Status','Progress (%)','Deadline','Documentation','Bottlenecks','Comments'];
-    const projectRows = projects.map(p => [
-      p.name,
-      p.owner_name,
-      p.status.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()),
-      p.progress,
-      p.timeline || '—',
-      p.documentation || '—',
-      (p.bottlenecks||[]).filter(b=>b).join('; ') || '—',
-      p.comment || '—'
-    ]);
-    const wsProjects = XLSX.utils.aoa_to_sheet([projectHeaders, ...projectRows]);
-    wsProjects['!cols'] = [{wch:30},{wch:20},{wch:15},{wch:12},{wch:18},{wch:25},{wch:40},{wch:40}];
-    XLSX.utils.book_append_sheet(wb, wsProjects, 'Projects');
-
-    // ── Sheet 3: Blockers ──
-    const blockers = projects.filter(p => p.bottlenecks && p.bottlenecks.filter(b=>b).length > 0);
-    if(blockers.length){
-      const blockerHeaders = ['Project','Owner','Status','Blocker'];
-      const blockerRows = blockers.flatMap(p =>
-        p.bottlenecks.filter(b=>b).map(b => [p.name, p.owner_name, p.status, b])
-      );
-      const wsBlockers = XLSX.utils.aoa_to_sheet([blockerHeaders, ...blockerRows]);
-      wsBlockers['!cols'] = [{wch:30},{wch:20},{wch:15},{wch:50}];
-      XLSX.utils.book_append_sheet(wb, wsBlockers, 'Blockers');
-    }
-
-    // Download
-    const filename = `UBA_Data_Report_${new Date().toISOString().split('T')[0]}.xlsx`;
-    XLSX.writeFile(wb, filename);
-    showToast('Excel file downloaded!');
-  } catch(e){
-    showToast('Failed to export: ' + e.message);
-  }
 }
 
 document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
