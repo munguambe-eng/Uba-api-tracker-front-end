@@ -253,7 +253,6 @@ h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400}
     <div class="main" id="main-content"></div>
   </div>
 </div>
-
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
@@ -618,7 +617,7 @@ function openAddModal(){
   document.getElementById('modal-body').innerHTML=projectForm(null);
   document.getElementById('modal-overlay').classList.add('open');
 }
-
+//edit modal
 async function openEditModal(id){
   try{
     const{project:p}=await api('GET','/projects/'+id);
